@@ -1,0 +1,12 @@
+.idea/
+bin/
+obj/
+Properties/
+node_modules/
+.module-cache/
+*.njsproj
+*.csproj
+*.user
+*.config
+.ntvs_analysis.dat
+

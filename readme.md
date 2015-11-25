@@ -1,1 +1,1 @@
-A simple game I created to play with React.js
+Just playing with React
