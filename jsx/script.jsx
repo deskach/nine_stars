@@ -182,9 +182,12 @@ var Game = React.createClass( {
   selectNumber: function(clickedNumber) {
     var state = this.state;
 
-    state.selectedNumbers.push(clickedNumber);
-    state.correct = null;
-    this.setState(state);
+
+    if(state.usedNumbers.indexOf(clickedNumber) === -1) {
+      state.selectedNumbers.push(clickedNumber);
+      state.correct = null;
+      this.setState(state);
+    }
   },
 
   unselectNumber: function(clickedNumber) {
