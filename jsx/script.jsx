@@ -22,7 +22,11 @@ var StarsFrame = React.createClass( {
 
     for (var i = 0; i < this.props.numberOfStars; i++) {
       stars.push(
-        <span className="glyphicon glyphicon-star"></span>
+        <span className="glyphicon glyphicon-star"
+              key={i}
+        >
+
+        </span>
       );
     }
 
@@ -93,8 +97,10 @@ var AnswerFrame = React.createClass( {
     var props = this.props;
 
     var selectedNumbers = props.selectedNumbers.map(function (i) {
-      return (<span
-        onClick={props.unselectNumber.bind(null, i)}>
+      return (
+        <span
+          onClick={props.unselectNumber.bind(null, i)}
+          key={i}>
           {i}
         </span>
       );
@@ -121,7 +127,9 @@ var NumbersFrame = React.createClass( {
       className = 'number selected-' + (selectedNumbers.indexOf(i) >= 0);
       className += ' used-' + (usedNumbers.indexOf(i) >= 0);
       numbers.push(
-        <div className={className} onClick={selectNumber.bind(null, i)}>
+        <div className={className}
+             key={i}
+             onClick={selectNumber.bind(null, i)}>
           {i}
         </div>
       );
@@ -260,8 +268,6 @@ var Game = React.createClass( {
         doneStatus: 'Game Over!'
       });
     }
-
-    console.log(this.state.redraws);
   },
 
   render: function () {
