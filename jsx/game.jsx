@@ -1,5 +1,9 @@
 ﻿var React = require('react');
-var StarsFrame = require('./starsFrame.jsx')
+var StarsFrame = require('./starsFrame.jsx');
+var ButtonFrame = require('./buttonFrame.jsx');
+var AnswerFrame = require('./answerFrame.jsx');
+var NumbersFrame = require('./numbersFrame.jsx');
+var DoneFrame = require('./doneFrame.jsx');
 
 var possibleCombinationSum = function(arr, n) {
   if (arr.indexOf(n) >= 0) { return true; }
@@ -18,125 +22,6 @@ var possibleCombinationSum = function(arr, n) {
   }
   return false;
 };
-
-var ButtonFrame = React.createClass( {
-  render: function () {
-    var disabled, button,
-      correct = this.props.correct;
-
-    switch (correct) {
-      case true:
-        button = (
-          <button className="btn btn-success btn-lg"
-                  onClick={ this.props.acceptAnswer }
-          >
-            <span className="glyphicon glyphicon-ok"></span>
-          </button>
-        )
-        break;
-      case false:
-        button = (
-          <button className="btn btn-danger btn-lg" >
-            <span className="glyphicon glyphicon-remove"></span>
-          </button>
-        )
-        break;
-      default:
-        disabled = this.props.selectedNumbers.length === 0;
-        button = (
-          <button className="btn btn-primary btn-lg"
-                  disabled={disabled}
-                  onClick = { this.props.checkAnswer }
-          >
-            =
-          </button>
-        )
-    }
-
-    return (
-      <div id="button-frame">
-        { button }
-        <br/> <br/>
-        <botton className="btn btn-warning btn-xs"
-                disabled={this.props.redraws == 0}
-                onClick={this.props.redraw}
-        >
-          <span className="glyphicon glyphicon-refresh">
-            &nbsp;
-            { this.props.redraws }
-          </span>
-        </botton>
-      </div>
-    );
-  }
-});
-
-var AnswerFrame = React.createClass( {
-  render: function () {
-    var props = this.props;
-
-    var selectedNumbers = props.selectedNumbers.map(function (i) {
-      return (
-        <span
-          onClick={props.unselectNumber.bind(null, i)}
-          key={i}>
-          {i}
-        </span>
-      );
-    })
-
-    return (
-      <div id="answer-frame">
-        <div className="well">
-          { selectedNumbers }
-        </div>
-      </div>
-    );
-  }
-});
-
-var NumbersFrame = React.createClass( {
-  render: function () {
-    var numbers = [], className,
-      selectNumber = this.props.selectNumber,
-      usedNumbers = this.props.usedNumbers,
-      selectedNumbers = this.props.selectedNumbers;
-
-    for(var i = 1; i < 10; i++) {
-      className = 'number selected-' + (selectedNumbers.indexOf(i) >= 0);
-      className += ' used-' + (usedNumbers.indexOf(i) >= 0);
-      numbers.push(
-        <div className={className}
-             key={i}
-             onClick={selectNumber.bind(null, i)}>
-          {i}
-        </div>
-      );
-    }
-
-    return (
-      <div id="numbers-frame">
-        <div className="well">
-          {numbers}
-        </div>
-      </div>
-    );
-  }
-});
-
-var DoneFrame = React.createClass({
-  render: function() {
-    return (
-      <div className = 'well text-center'>
-        <h2>{ this.props.doneStatus }</h2>
-        <button className="btn btn-default"
-                onClick={ this.props.resetGame } >
-          Play again
-        </button>
-      </div>
-    )
-  }
-});
 
 var Game = React.createClass( {
   getInitialState: function() {
