@@ -1,4 +1,6 @@
 ﻿var React = require('react');
+var ReactDOM = require('react-dom')
+
 var StarsFrame = require('./starsFrame.jsx');
 var ButtonFrame = require('./buttonFrame.jsx');
 var AnswerFrame = require('./answerFrame.jsx');
@@ -180,7 +182,7 @@ var Game = React.createClass( {
   }
 });
 
-React.render(
+ReactDOM.render(
   <Game />,
   document.getElementById('container')
   );
