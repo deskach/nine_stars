@@ -1,4 +1,7 @@
-﻿var possibleCombinationSum = function(arr, n) {
+﻿var React = require('react');
+var StarsFrame = require('./starsFrame.jsx')
+
+var possibleCombinationSum = function(arr, n) {
   if (arr.indexOf(n) >= 0) { return true; }
   if (arr[0] > n) { return false; }
   if (arr[arr.length - 1] > n) {
@@ -15,30 +18,6 @@
   }
   return false;
 };
-
-var StarsFrame = React.createClass( {
-  render: function () {
-    var stars = [];
-
-    for (var i = 0; i < this.props.numberOfStars; i++) {
-      stars.push(
-        <span className="glyphicon glyphicon-star"
-              key={i}
-        >
-
-        </span>
-      );
-    }
-
-    return (
-      <div id="stars-frame">
-        <div className="well">
-          {stars}
-        </div>
-      </div>
-    );
-  }
-});
 
 var ButtonFrame = React.createClass( {
   render: function () {

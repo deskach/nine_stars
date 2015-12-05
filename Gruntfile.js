@@ -63,17 +63,21 @@
           '../gh-pages/js/script-min.js': ['js/script.js']
         }
       }
-    }
+    },
 
-    //browserify:     {
-    //  options:      {
-    //    transform:  [ require('grunt-react').browserify ]
-    //  },
-    //  app:          {
-    //    src:        'js/script.js',
-    //    dest:       'js/wibar.js'
-    //  }
-    //}
+    browserify:     {
+      options:      {
+        transform:  [ require('grunt-react').browserify ]
+      },
+      //app:          {
+      //  src:        'js/script.js',
+      //  dest:       'js/wibar.js'
+      //},
+      client: {
+        src: ['jsx/**/*.jsx'],
+        dest: 'js/script.js'
+      }
+    }
   });
 
   // Load the plugins
@@ -82,11 +86,11 @@
   //grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-react');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  //grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-browserify');
 
   // Default task(s).
-  grunt.registerTask('default', ['react']);
+  grunt.registerTask('default', ['browserify']);
   grunt.registerTask('build', [
-    'react', 'cssmin', 'uglify', 'processhtml'
+    'browserify', 'cssmin', 'uglify', 'processhtml'
   ]);
 };
